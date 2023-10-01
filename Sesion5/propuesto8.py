@@ -9,12 +9,15 @@ def inputDatos(text):
         escribir='Teléfono'
     while True:
         entrada=input(f"Ingrese el {escribir}: ")
-        print(f"¿Su {escribir} es: {entrada}?")
+        print(f"¿Su {escribir} es: {entrada}?\n")
         eligir=input("¿Desea continuar? 'S' ¿Quiere cambiar? 'N': ")
         if eligir == '' or eligir.lower() == 's':
-            if text!=1:
-                print(f"Se ingresó correctamente su {escribir}\n")
-                return entrada
+            if text==0:
+                if entrada!='':
+                    print(f"Se ingresó correctamente su {escribir}\n")
+                    return entrada
+                else:
+                    print("No puede escribir un contenido vacio")
             else:
                 patron = r'^9\d{8}$'  # Comienza con 9 y tiene 8 dígitos más
                 if re.match(patron, entrada):
@@ -27,13 +30,17 @@ def inputDatos(text):
         else:
             print("Elija una opcion válida.")
 
-def convertidor(param):
+def convertidor(parametross):
     try:
-        copiando = param.strip("{}")
-        diccionario = ast.literal_eval("{" + copiando + "}")
+        copiando = parametross.strip("{}")
+        diccionario = ast.literal_eval("{" + parametross+ "}")
         return diccionario
     except SyntaxError as e:
-        print(f"Error con el archivo de texto: {e}\n")
+        print(f"Error, archivo dañano o modificado: {e}\n")
+        with open("agenda.txt","w",encoding="utf-8") as agendaVacia:
+            agendaVacia.write("")
+            agendaVacia.close()
+        print("Creando nueva agenda.txt, agenda.txt vacia creada correctamente.\n")
         newlocal={}
         diccionario=dict(newlocal)
         return diccionario
@@ -58,21 +65,36 @@ def consultar(nombre,buscando='1'):
                 creando.close()
         except IOError as e:
             print(f"Error de E/S al trabajar con '{archivo}': {e}")
+            convertidor(',,')
         except Exception as e:
             print(f"Error inesperado: {e}")
+            convertidor(',,')
+            
 
 def agregar(nombre,telefono='1'):
-    while True:
-        try:
-            with open("agenda.txt","a",encoding="utf-8") as archivo:
-                texto=f'"{nombre}": {telefono},\n'
+    try:
+        with open("agenda.txt","r",encoding="utf-8") as leerArchivo:
+            comprobar1=leerArchivo.read()
+            comprobar2=str(convertidor(comprobar1))
+            leerArchivo.close()
+            comprobar3=comprobar2.strip("{}")+', '
+        with open("agenda.txt","a",encoding="utf-8") as archivo:
+            if comprobar1==comprobar3 or comprobar3==', ':
+                texto=f"'{nombre}': {telefono}, "
                 archivo.write(texto)
-                archivo.close()
-                break
-        except IOError as e:
-            print(f"Error de E/S al trabajar con '{archivo}': {e}")
-        except Exception as e:
-            print(f"Error inesperado: {e}")
+            else:
+                convertidor(',,')
+                texto=f"'{nombre}': {telefono}, "
+                archivo.write(texto)
+            archivo.close()
+            return telefono
+    except FileNotFoundError:
+            with open("agenda.txt", "w",encoding="utf-8") as creando:
+                creando.close()
+    except IOError as e:
+        print(f"Error de E/S al trabajar con '{archivo}': {e}")
+    except Exception as e:
+        print(f"Error inesperado: {e}")
 
 while (mientras!=1):
     try:
@@ -89,13 +111,14 @@ while (mientras!=1):
             name=inputDatos(0)
             numTelefono=consultar(name)
             if numTelefono!='0':
-                print(f"Nombre: {name}\nTelefono: {numTelefono}\n")
+                print(f"Nombre: '{name}'\nTelefono: '{numTelefono}'\n")
             else:
                 print("El nombre ingresado no se encuentra en la agenda.\n")
         elif opcion == 2:
             name=inputDatos(0)
             fone=inputDatos(1)
             agregar(name,fone)
+            print(f"Nombre: '{name}' y Telefono: '{fone}' se agregaron correctamente.\n")
         # elif opcion == 3:
         # elif opcion == 4:
         elif opcion == 5:
