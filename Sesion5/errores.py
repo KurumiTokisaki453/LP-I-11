@@ -11,6 +11,7 @@ except FileNotFoundError:
     # Por ejemplo, puedes crear un nuevo archivo con un contenido inicial
     with open(archivo, "w") as archivo:
         archivo.write("Este es un nuevo archivo.")
+        archivo.close()
     print(f"Archivo '{archivo}' creado y listo para su uso.")
 except IsADirectoryError:
     # El archivo es un directorio en lugar de un archivo
