@@ -37,10 +37,11 @@ def convertidor(parametross):
         return diccionario
     except SyntaxError as e:
         print(f"Error, archivo dañano o modificado: {e}\n")
+        
         with open("agenda.txt","w",encoding="utf-8") as agendaVacia:
             agendaVacia.write("")
             agendaVacia.close()
-        print("Creando nueva agenda.txt, agenda.txt vacia creada correctamente.\n")
+        print("\n\nCreando nueva agenda.txt, agenda.txt vacia creada correctamente.\n")
         newlocal={}
         diccionario=dict(newlocal)
         return diccionario
