@@ -9,12 +9,13 @@ def mayusTxt():
     try:
         with open("entrada.txt","r",encoding="utf-8") as leerArchivo:
             comprobar1=leerArchivo.read()
+            print(f"Leendo el texto: \n\n{comprobar1}\n")
             leerArchivo.close()
         with open("salida.txt","w",encoding="utf-8") as mayuscula:
           mayuscula.write(comprobar1.upper())
           mayuscula.close()
-          print(f"Archivo de texto convertido CORRECTAMENTE\ntexto nuevo:\n\n{comprobar1.upper()}")
-          return comprobar1.upper()
+        print(f"ARCHIVO DE TEXTO CONVERTIDO CORRECTAMENTE\nMostrando texto Convertido:\n\n{comprobar1.upper()}\n")
+        return comprobar1.upper()
     except FileNotFoundError:
             with open("entrada.txt", "w",encoding="utf-8") as creando:
                 creando.close()

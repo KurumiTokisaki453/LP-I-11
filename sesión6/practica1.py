@@ -7,7 +7,9 @@ Clase Estudiante, atributos: nombre, edad, género, lista_de_calificaciones.
 ----
 objetos Estudiante, calcular promedio de calificaciones.
 '''
+
 import pandas as pd
+
 class Estudiante:
   def __init__(self, nombre, edad, genero,notas):
     self.nombre=nombre
@@ -20,7 +22,7 @@ class Estudiante:
     resultado=suma / len(self.notas)
     return resultado
   
-  def tolpandas(self):
+  def tranformPandas(self):
     diccionario = {
             'Nombre': [self.nombre],
             'Edad': [self.edad],
@@ -30,7 +32,7 @@ class Estudiante:
     return pd.DataFrame(diccionario)
   
   def imprimirpandas(self):
-    dataframe = self.tolpandas()
+    dataframe = self.tranformPandas()
     print(f"La diccionario es: \n{dataframe}")
 
   def __str__(self):

@@ -2,7 +2,7 @@ from io import open
 
 listaElement=[]
 diccionario={}
-def writefuntion():
+def writefuncion():
     while True:
         nametxt=input("Nombra el archivo '.txt' que usaremos: ")
         try:
@@ -31,7 +31,7 @@ def writefuntion():
             print(f"Error inesperado: {e}")
         finally:
             return entrada
-print(f"\nSu texto es: {writefuntion()}\n")
+print(f"\nSu texto es: {writefuncion()}\n")
 
 print(diccionario)
 

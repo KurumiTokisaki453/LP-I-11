@@ -1,37 +1,42 @@
-
-
 '''
-Crear el archivo propuesto8.py de gestión de productos para una tienda, deberá usar clases
-y objetos para representar los productos y almacenar sus datos en un archivo de texto. El
-programa debe proporcionar las siguientes opciones en un menú:
+gestión de productos para una tienda
+
+deberá usar clases y objetos para los productos y almacenar sus datos en un archivo de texto.
 1. Agregar producto
 2. Mostrar lista de productos
 3. Buscar producto por nombre
 4. Actualizar precio de un producto
 5. Eliminar producto
 6. Salir
-A continuación, se detallan las especificaciones para cada opción:
+
 Agregar producto: Al seleccionar esta opción, el programa debe solicitar los siguientes
 datos del producto: nombre, precio y cantidad en stock. Luego, debe crear un objeto de tipo
 "Producto" con estos datos y agregarlo a una lista de productos.
+
 Mostrar lista de productos: Esta opción debe mostrar en la consola la información de todos
 los productos registrados, incluyendo nombre, precio y cantidad en stock.
+
 Buscar producto por nombre: El programa debe permitir al usuario ingresar el nombre de
 un producto y mostrar su información si existe en el registro.
+
 Actualizar precio de un producto: El usuario podrá ingresar el nombre de un producto y
 su nuevo precio. El programa deberá buscar el producto en la lista y actualizar su precio.
 Eliminar producto: El usuario podrá ingresar el nombre de un producto y el programa
 deberá eliminarlo de la lista de productos.
+
 Salir: Al seleccionar esta opción, el programa debe guardar los datos de los productos en
 un archivo de texto llamado "productos.txt" y finalizar su ejecución.
+
 Además, debes utilizar un diccionario para almacenar temporalmente los productos, donde
 la clave será el nombre del producto y el valor será un objeto de la clase "Producto". Al iniciar
 el programa, debes cargar los datos de productos desde el archivo "productos.txt" en este
 diccionario (si el archivo existe).
 Cada producto debe ser representado por una clase llamada "Producto" que tenga atributos
 como nombre, precio y cantidad en stock.
+
 Al finalizar el programa (opción 6), los datos actualizados de los productos deben ser
 guardados en el archivo "productos.txt".
+
 Realice el control de excepciones y validaciones que considere.
 '''
 
@@ -130,5 +135,4 @@ def main():
         else:
             print("Opción no válida. Por favor, elija una opción válida.")
 
-if __name__ == "__main__":
-    main()
+main()
