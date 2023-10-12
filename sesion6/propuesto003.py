@@ -7,22 +7,12 @@ Vuelque la información en un archivo pickle.
 '''
 import os
 import pickle
-from datetime import datetime
 
 conjunto=[]
 
-def validarFecha():
-  fecha_por_defecto = "2023-12-31"  # Fecha por defecto
-  while True:
-        fecha_str = input("Ingrese una fecha (YYYY-MM-DD) o Enter para usar la fecha por defecto (2023-12-31): ")
-        if fecha_str == "":
-            return fecha_por_defecto
-        try:
-            datetime.strptime(fecha_str, '%Y-%m-%d')
-            return fecha_str
-        except ValueError:
-            print("Fecha no válida. Intente nuevamente.")
-
+def fechautil():
+  vencimiento=input("Ingrese la Fecha de vencimiento de su Tarea: ")
+  return vencimiento
 
 def estadoutil():
   estado=""
@@ -67,6 +57,8 @@ try:
     with open(nombre_pickle, "rb") as archivo:
       oldlista = pickle.load(archivo)
       lista=list(oldlista)
+  # else:
+  #   lista=[]
     print("Terminando de leer los archivos existentes.")
 except FileNotFoundError:
   with open(nombre_pickle, "wb") as archivo:
@@ -75,6 +67,7 @@ except IOError as e:
     print(f"Error de E/S al trabajar: {e}")
 except Exception as e:
     print(f"Error inesperado: {e}")
+print(f"Mi lista es: {lista} con typo {type(lista)}")
 
 def leerPendientes():
   print(f"Seleccione de que Tarea quiere completar:")
@@ -96,7 +89,7 @@ def menuPrincipal():
       seleccionar=int(input("Ingrese la opción deseada: "))
       if seleccionar==1:
         descripcion=input("Ingrese la descripción de su Tarea: ")
-        opcion1=Tarea(descripcion,validarFecha(),estadoutil())
+        opcion1=Tarea(descripcion,fechautil(),estadoutil())
         opcion1.agregar()
         print("Se agrego correctamente su Tarea.")
         
@@ -133,19 +126,19 @@ def menuPrincipal():
         else:
           print("\nNo tiene Tareas.\n")
         print("--------------------------------------------")
-        
+
       elif seleccionar==4:
         with open(nombre_pickle, "wb") as archivo:
             pickle.dump(lista, archivo)
+
         print(f"Los datos han sido guardados en {nombre_pickle}.")
         print("Terminando el Programa.")
         break
-      else:
-        print("Seleccione un valor Válido")
-    except ValueError:
-      print("Seleccione un número.")
-    except Exception:
-      print("Error en el programa, inténtelo nuevamente.")
+      elif seleccionar==5:
+        with open(nombre_pickle, "rb") as archivo:
+            newlista = pickle.load(archivo)
+        for tarea in newlista:
+            print(tarea)
     except:
-      print("Seleccione un valor válido")
+      print("Error en el programa")
 menuPrincipal()
