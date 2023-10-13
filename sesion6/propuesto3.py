@@ -70,7 +70,8 @@ try:
     print("Terminando de leer los archivos existentes.")
 except FileNotFoundError:
   with open(nombre_pickle, "wb") as archivo:
-   lista=[]
+    lista=[]
+    print("Se creó nueva 'tareas.pkl'.")
 except IOError as e:
     print(f"Error de E/S al trabajar: {e}")
 except Exception as e:
