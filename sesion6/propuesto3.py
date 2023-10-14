@@ -137,7 +137,7 @@ def menuPrincipal():
         
       elif seleccionar==4:
         with open(nombre_pickle, "wb") as archivo:
-            pickle.dump(lista, archivo)
+          pickle.dump(lista, archivo)
         print(f"Los datos han sido guardados en {nombre_pickle}.")
         print("Terminando el Programa.")
         break
