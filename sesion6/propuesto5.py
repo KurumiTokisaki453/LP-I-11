@@ -16,60 +16,85 @@ y guardar (almacena los datos en el archivo pickle).
 '''
 import pickle
 
+nombre_pickle = "peliculas.pkl" #Nombre del archivo
+
 class Pelicula:
   def __init__(self,titulo,duracion,lanzamiento):
     self.titulo=titulo
     self.duracion=duracion
     self.lanzamiento=lanzamiento
   def __str__(self):
-    print(f"Título: {self.titulo}\nDuración: {self.duracion}\nLanzamiento: {self.lanzamiento}")
+    return (f"Título: {self.titulo}\nDuración: {self.duracion}\nLanzamiento: {self.lanzamiento}")
 peliculas=[]
 class Catalogo(Pelicula):
+
   def agregar(self):
     peliculas.append(self)
+    print("Se terminó de agregar los elementos")
     
-  def mostrar(self):
-    for i,classPelicula in enumerate(lista):
-      print(f"\nPelícula {i}:\n{str(classPelicula)}")
+  def mostrar():
+    if len(peliculas)==0:
+      print("\nNo hay peliculas para mostrar\n")
+    else:
+      for i,classPelicula in enumerate(peliculas):
+        print(f"\nPelícula {i}:\n{str(classPelicula)}")
+      print("\nSe terminó de mostrar los elementos.\n")
       
   def cargar():
     while True:
       try:
           with open(nombre_pickle, "rb") as archivo:
             oldlista = pickle.load(archivo)
-            lista=list(oldlista)
+            if bool(oldlista):
+              print(f"Su archivo {nombre_pickle}, está vacío.")
+              return peliculas
+            else:
+              # listacombinada=list(set(peliculas+list(oldlista)))
+              peliculas=(list(oldlista))
+              print("Terminando de leer los archivos existentes.")
+              print("Se guardo en la lista temporal, ver con opción MOSTRAR.")
             del(archivo)
-            return lista
-          print("Terminando de leer los archivos existentes.")
-          print("Se guardo en la lista temporal, ver con opción MOSTRAR.")
+            # peliculas=listacombinada
+            return peliculas
       except FileNotFoundError:
         with open(nombre_pickle, "wb") as archivo:
-          lista=[]
           print("No hay archivo de pickle.")
           print(f"Se creó nueva '{nombre_pickle}'.")
       except IOError as e:
           print(f"Error de E/S al trabajar: {e}")
       except Exception as e:
-          print(f"Error inesperado: {e}")
+        print(f"Error inesperado: {e}")
+        break
+      
   def guardar():
-    with open(nombre_pickle, "wb") as archivo:
-      pickle.dump(lista, archivo)
-      del(archivo)
-    print(f"Los datos han sido guardados en {nombre_pickle}.")
+    with open(nombre_pickle, "ab+") as archivo:
+      pickle.dump(peliculas, archivo)
+      print(f"Los datos han sido guardados en {nombre_pickle}.\n")
+    return peliculas
   def guardarycargar():
-    self.guardar()
-    self.cargar()
+    ejemplo0=Catalogo("2",200,"2000")
+    ejemplo0.cargar()
+    ejemplo0.guardar()
     print("Archivos guardados y cargados.")
 
-pelicula1 = Pelicula("Titanic", 195, "19 de diciembre de 1997")
-pelicula2 = Pelicula("El Padrino", 175, "24 de marzo de 1972")
-pelicula3 = Pelicula("Star Wars: Una Nueva Esperanza", 121, "25 de mayo de 1977")
-pelicula4 = Pelicula("Jurassic Park", 127, "11 de junio de 1993")
-pelicula5 = Pelicula("El Señor de los Anillos: La Comunidad del Anillo", 178, "19 de diciembre de 2001")
+# pelicula1 = Catalogo("Titanic", 195, "19 de diciembre de 1997")
+# pelicula2 = Catalogo("El Padrino", 175, "24 de marzo de 1972")
+# pelicula4 = Catalogo("Jurassic Park", 127, "11 de junio de 1993")
+# pelicula3 = Catalogo("Star Wars: Una Nueva Esperanza", 121, "25 de mayo de 1977")
+# pelicula5 = Catalogo("El Señor de los Anillos: La Comunidad del Anillo", 178, "19 de diciembre de 2001")
 
-pelicula1.__str__()
-pelicula2.__str__()
-pelicula3.__str__()
-pelicula4.__str__()
-pelicula5.__str__()
+# pelicula1.__str__()
+# pelicula2.__str__()
+# pelicula3.__str__()
+# pelicula4.__str__()
+# pelicula5.__str__()
 
+# pelicula1.agregar()
+# Catalogo.mostrar()
+# pelicula2.agregar()
+# Catalogo.mostrar()
+print("Los 2 elementos agregados.")
+# Catalogo.guardar()
+Catalogo.mostrar()
+peliculas=Catalogo.cargar()
+Catalogo.mostrar()
