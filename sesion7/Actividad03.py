@@ -23,6 +23,7 @@ alumnos=[
   ('Jose',17,'44444444','jcorrales@ucsm.edu.pe')
 ]
 cursor.executemany("INSERT INTO alumnos VALUES (null, ?,?,?,?)",alumnos)
+print("1. Tabla alumnos con su clave primaria y DNI unico credo correctamente.")
 conexion.commit()
 conexion.close()
 
@@ -39,6 +40,7 @@ Traceback (most recent call last):
   cursor.execute("INSERT INTO alumnos VALUES (null, 'Sonia', 19,'11111111','ssalas@ucsm.edu.pe')")
   sqlite3.IntegrityError: UNIQUE constraint failed: alumnos.dni
 """
+print("2. Error al Ingresar: Fallo por DNI dato único no puede repetirse.")
 conexion.commit()
 conexion.close()
 
@@ -52,8 +54,8 @@ cursor=conexion.cursor()
 cursor.execute("SELECT * FROM alumnos WHERE edad=17")
 alumnos=cursor.fetchall()
 
+print("3. Consultando la tabla alumnos.")
 print(alumnos)
-
 conexion.commit()
 conexion.close()
 
@@ -67,7 +69,7 @@ cursor.execute("""UPDATE alumnos
                SET nombre='Leonardo'
                WHERE nombre LIKE 'Leandro'
                """)
-
+print("4. Actualizando el nombre Leando por Leonardo de la tabla.")
 conexion.commit()
 conexion.close()
 
@@ -78,7 +80,7 @@ conexion=sqlite3.connect('ejemplo3.db')
 cursor=conexion.cursor()
 
 cursor.execute("DELETE FROM alumnos WHERE dni='44444444'")
-print("Se eliminaron todos los registro con el dni='44444444'")
+print("5. Se eliminaron todos los registro con el dni='44444444'")
 conexion.commit()
 conexion.close()
 

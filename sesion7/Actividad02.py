@@ -1,5 +1,5 @@
 # II Clave primaria y sus restricciones.
-# 1. Crear en Python una base de datos "ejemplo2.db" y tabla alumnos con clave primaria
+# 1. Crear en Python una base de datos "ejemplo2.db" y tabla alumnos con clave primaria.
 import sqlite3
 conexion=sqlite3.connect('ejemplo2.db')
 cursor=conexion.cursor()
@@ -19,11 +19,12 @@ alumnos=[
 ]
 
 cursor.executemany("INSERT INTO alumnos VALUES (?,?,?,?)",alumnos)
+print("1. Base de datos y tabla creados en 'ejemplo2.db'.")
 conexion.commit()
 conexion.close()
 
 
-# 2. Verificar inserción sin repetirse el dato clave primaria
+# 2. Verificar inserción sin repetirse el dato clave primaria.
 # import sqlite3
 conexion=sqlite3.connect('ejemplo2.db')
 cursor=conexion.cursor()
@@ -34,6 +35,7 @@ cursor=conexion.cursor()
 '''Traceback (most recent call last):
   File "\Actividad02.py", line 29, in <module>
   cursor.execute("""INSERT INTO alumnos VALUESsqlite3.IntegrityError: UNIQUE constraint failed: alumnos.id'''
+print("2. Error Clave Primaria: 'UNIQUE constraint failed: alumnos.id'")
 conexion.commit()
 conexion.close()
 
@@ -50,12 +52,12 @@ cursor.execute('''
                marca VARCHAR(50) NOT NULL,
                precio FLOAT NOT NULL
               ) ''')
-
+print("3. Tabla productos con Clave primaria Agregados correctamente.")
 conexion.commit()
 conexion.close()
 
 
-# 4. Insertar 3 registro en productos desde Python
+# 4. Insertar 3 registro en productos desde Python.
 # import sqlite3
 conexion=sqlite3.connect('ejemplo2.db')
 cursor=conexion.cursor()
@@ -67,12 +69,12 @@ productos= [
 ]
 
 cursor.executemany("INSERT INTO productos VALUES (null, ?,?,?)", productos)
-
+print("4. 3 Registros ingresados correctamente a tabla productos.")
 conexion.commit()
 conexion.close()
 
 
-# 5. Retornar n registros de tabla productos de sqlite a Python
+# 5. Retornar n registros de tabla productos de sqlite a Python.
 # import sqlite3
 
 conexion=sqlite3.connect('ejemplo2.db')
@@ -89,6 +91,6 @@ for product in productos:
     product[1],
     product[2],
     product[3]))
-  
+print("5. Se mostró toda la tabla registrada en productos.")
 conexion.commit()
 conexion.close()
