@@ -135,7 +135,7 @@ def menuPrincipal():
       print("1) Crear nueva categoria.")
       print("2) Crear nuevo plato")
       print("3) Mostrar menú.")
-      print("x) Salir.")
+      print("4) Salir.")
       seleccion=int(input("Elige su opción: "))
       if seleccion==1:
         print("Agregando nueva categoria")
@@ -146,67 +146,11 @@ def menuPrincipal():
       elif seleccion==3:
         print("Mostrando el menú")
         mostrar_menu()
-      elif seleccion=='x':
+      elif seleccion==4:
         print("Terminando programa.")
         break
     except:
       print("Ingrese un valor válido.")
-# 
-# print("Crear Base de Datos")
-# crear_bd()
-# print("Crear las categorias.")
-# agregar_categoria()
-# print("Mostrar el menú.")
-# mostrar_menu()
-# print("Agregar los platos.")
-# agregar_plato()
-print("Mostrar el menú principal.")
+
+print("Mostrando el menú principal.")
 menuPrincipal()
-
-''' # Ejercicio
-Crear propuesto2.py para gestionar los platos de menú de un restaurante.
-Desarrolla una función crear_bd() que creará una base de datos restaurante.db con las tablas:
-
-▪ Si ya existieran las tablas tratar la excepción y mostrar que las tablas ya existen.
-
-Caso contrario mostrará un mensaje que se han creado adecuadamente.
----las tablas---
-CREATE TABLE categoria (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  nombre VARCHAR (100) UNIQUE NOT NULL)
-CREATE TABLE plato (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  nombre VARCHAR (100) UNIQUE NOT NULL,
-  categoria_id INTEGER NOT NULL,
-  FOREIGN KEY (categoria_id) REFERENCES categoria(id)
-    # -- NOTA: La línea FOREIGN KEY (categoria_id) REFERENCES categoria(id) --
-    
-Indica un tipo de clave especial (foránea), por la cual se crea una relación entre la
-categoría de un plato con el registro de categorías.
-Llame a la función y compruebe que la base de datos se crea correctamente
-
-▪ Cree función agregar_categoria() que solicite al usuario un nombre de
-categoría y crear la categoría en la base de datos
-(Si ya existe la categoría, generará un error porque el nombre(categoria) es UNIQUE).
-
-▪ "Bienvenida (saludo)", crear menú de opciones, luego le permita crear una categoría o Salir.
-Añadir tres categorías utilizando este menú de opciones:
-  ▪ Primeros.
-  ▪ Segundos.
-  ▪ Postres.
-
-▪ Crear funcion agregar_plato() y muestra las categorías disponibles, y le permita escoger un (submenú).
-Luego introducir el nombre del plato y lo añadirá a la base de datos, entendiendo que la categoría del plato
-concuerde con el id de la categoría y que el nombre(UNIQUE) no pueda repetirse
-(no es necesario comprobar si la categoría realmente existe, en ese caso simplemente no
-se insertará el plato).
-
-
-▪ Crear función mostrar_menu() muestra el menú de todos los platos de forma ordenada: los primeros, los segundos y los postres. 
-  ▪ Primeros: Ensalada, Caldo
-  ▪ Segundos: Estofado de res, Pollo al horno
-  ▪ Postres: Mazamorra Morada, Flan
-'''
-
-
-
